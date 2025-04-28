@@ -1,14 +1,21 @@
-name: Deploy to GitHub Pages
+name: Deploy static website to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -16,10 +23,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload site
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: '.'
+          path: "."
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v3
