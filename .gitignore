@@ -1,0 +1,17 @@
+# Ignore Mac system files
+.DS_Store
+
+# Node modules (if you ever add Node.js later)
+node_modules/
+
+# Logs
+*.log
+
+# Ignore terraform files if any were left accidentally
+*.tf
+*.tfstate
+.terraform/
+
+# SSH Keys
+deployer-key
+deployer-key.pub
